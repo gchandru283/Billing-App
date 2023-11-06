@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { HotCoffee, Snacks, ColdCoffee, Dessert } from "./components/Data";
 
 function Billing() {
-  const [openSection, setOpenSection] = useState("Hot Coffee");
   const [selected, setSelected] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
 
@@ -42,13 +41,8 @@ function Billing() {
   };
 
   const renderSection = (sectionName, items) => (
-    <div
-      className="flex flex-col pb-4"
-      key={sectionName}
-    >
-      <div className="font-semibold cursor-pointer">
-        {sectionName}
-      </div>
+    <div className="flex flex-col pb-4" key={sectionName}>
+      <div className="font-semibold cursor-pointer">{sectionName}</div>
       <div>
         {items.map((item) => (
           <div className="flex pl-2" key={item.id}>
@@ -79,23 +73,29 @@ function Billing() {
         </div>
       </div>
       <div className="w-full flex-grow flex flex-col items-center gap-5 py-7 bg-gray-100">
-          <div className="text-xl md:text-2xl font-semibold font-glacial border-b-2 border-black px-2">Customer Bill</div>
+        <div className="text-xl md:text-2xl font-semibold font-glacial border-b-2 border-black px-2">
+          Customer Bill
+        </div>
         <div className="md:h-96 overflow-y-auto w-11/12 max-w-3xl px-2 md:px-10 border border-dashed rounded-sm md:rounded py-5 border-gray-300">
           <table className="table table-fixed w-full text-lg md:text-xl font-NewsCycle tracking-wide">
             <thead>
               <tr>
-                <th className="w-2/5 text-left pl-8 md:pl-16 font-semibold border-b-2 border-gray-400" >Item</th>
-                <th className="w-1/4 pb-2 font-semibold border-b-2 border-gray-400">Count</th>
-                <th className="w-1/4 text-right pb-2 pr-8 font-semibold border-b-2 border-gray-400">Price</th>
+                <th className="w-2/5 text-left pl-8 md:pl-16 font-semibold border-b-2 border-gray-400">
+                  Item
+                </th>
+                <th className="w-1/4 pb-2 font-semibold border-b-2 border-gray-400">
+                  Count
+                </th>
+                <th className="w-1/4 text-right pb-2 pr-8 font-semibold border-b-2 border-gray-400">
+                  Price
+                </th>
               </tr>
             </thead>
             <tbody>
               {selected.map((item, id) => {
                 return (
                   <tr key={id}>
-                    <td className="md:pl-10 pl-5 p-0.5">
-                      {item.name}
-                    </td>
+                    <td className="md:pl-10 pl-5 p-0.5">{item.name}</td>
                     <td className="text-center p-0.5">
                       <input
                         onFocus={null}
@@ -117,11 +117,15 @@ function Billing() {
         </div>
         <div className="flex items-center justify-around gap-9 w-full mt-4 max-w-3xl px-5 sm:px-10 ">
           <div className="text-right font-semibold md:text-xl text-lg">
-          Total Cost: Rs.{totalCost.toFixed(2)}
-        </div>
-            <div>
-              <input type="button" className="bg-gray-600 hover:scale-105 transform duration-300 cursor-pointer text-white p-1 px-3 text-lg rounded font-NewsCycle tracking-wide" value="Print Receipt" />
-            </div>
+            Total Cost: Rs.{totalCost.toFixed(2)}
+          </div>
+          <div>
+            <input
+              type="button"
+              className="bg-gray-600 hover:scale-105 transform duration-300 cursor-pointer text-white p-1 px-3 text-lg rounded font-NewsCycle tracking-wide"
+              value="Print Receipt"
+            />
+          </div>
         </div>
       </div>
     </div>
