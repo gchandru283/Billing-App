@@ -30,21 +30,32 @@ code {
   src: url('/fonts/NewsCycle.ttf') format('opentype');
 }
 
-.scrollbar::-webkit-scrollbar-track {
-  background-color: rgb(254, 240, 247);
+::-webkit-scrollbar {
+  width: 5px;
+  z-index: -10;
+}
+
+/* Customize scrollbar track (background) */
+::-webkit-scrollbar-track {
+  background-color: transparent;
   z-index: -10;
 }
 
 /* Customize scrollbar thumb (handle) */
-.scrollbar::-webkit-scrollbar-thumb {
-  background-color: gray;
+::-webkit-scrollbar-thumb {
+  background-color:slategrey;
   border-radius: 5px;
   z-index: -10;
 }
 
-.scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: darkgray lightgray;
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color:#d1d5db;
+  border-radius: 5px;
+  z-index: -10;
+}
+.scrollbar::-webkit-scrollbar {
+  width: 3px;
+  z-index: -10;
 }
 
 .tap-highlight-transparent {
