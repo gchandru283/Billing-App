@@ -65,13 +65,8 @@ function Billing() {
     setIsModalOpen(false);
   };
 
-  const [inputValues, setInputValues] = useState({
-    name: "",
-    mobile: "",
-  });
   const handleClear = () => {
     setCustomerDetails({ name: "", mobile: "" });
-    setInputValues({ name: "", mobile: "" });
     setSelected([]);
     setTotalCost(0);
   };
@@ -100,6 +95,27 @@ function Billing() {
     };
 
     setJsonData(newJsonData);
+    setAllJsonData((prevData) => [...prevData, newJsonData]);
+  };
+
+  //--------------------------------------------------------------------------------------------------
+
+  const [allJsonData, setAllJsonData] = useState([]);
+
+  const downloadEntries = () => {
+    if (allJsonData.length > 0) {
+      const jsonString = JSON.stringify(allJsonData, null, 2);
+      const blob = new Blob([jsonString], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Entries.json";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
   };
 
   //--------------------------------------------------------------------------------------------------
@@ -224,7 +240,7 @@ function Billing() {
             <div className="font-semibold md:text-xl text-lg w-48 md:w-52">
               Total Cost: Rs.{totalCost.toFixed(2)}
             </div>
-            <div className="flex gap-5">
+            <div className="flex md:gap-5">
               <input
                 type="button"
                 className="bg-red-600 hover:scale-100 scale-95 md:scale-100 md:hover:scale-105 transform duration-300 cursor-pointer text-white p-1 px-3 text-lg rounded font-NewsCycle tracking-wide"
@@ -239,6 +255,12 @@ function Billing() {
                   convertToJSON();
                   openModal();
                 }}
+              />
+              <input
+                type="button"
+                className="bg-green-600 hover:scale-100 scale-95 md:scale-100 md:hover:scale-105 transform duration-300 cursor-pointer text-white p-1 px-3 text-lg rounded font-NewsCycle tracking-wide"
+                value="Download Entries"
+                onClick={downloadEntries}
               />
             </div>
           </div>
