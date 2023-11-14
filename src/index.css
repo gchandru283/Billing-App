@@ -20,14 +20,17 @@ code {
   font-family: 'glacialIndifference'; 
   src: url('/fonts/GlacialIndifference-Regular.otf') format('opentype');
 }
-@font-face {
-  font-family: 'HarryP'; 
-  src: url('/fonts/Harry-P.TTF') format('opentype');
-}
 
 @font-face {
   font-family: 'NewsCycle'; 
   src: url('/fonts/NewsCycle.ttf') format('opentype');
+}
+
+@media print {
+  .modal {
+    background-color: rgb(254, 249, 195);
+    /* Other print-specific styles... */
+  }
 }
 
 ::-webkit-scrollbar {
@@ -35,13 +38,11 @@ code {
   z-index: -10;
 }
 
-/* Customize scrollbar track (background) */
 ::-webkit-scrollbar-track {
   background-color: transparent;
   z-index: -10;
 }
 
-/* Customize scrollbar thumb (handle) */
 ::-webkit-scrollbar-thumb {
   background-color:slategrey;
   border-radius: 5px;
@@ -53,6 +54,11 @@ code {
   border-radius: 5px;
   z-index: -10;
 }
+.modalScrollbar::-webkit-scrollbar-thumb {
+  background-color:rgb(221, 217, 169);
+  border-radius: 3px;
+  z-index: -10;
+}
 .scrollbar::-webkit-scrollbar {
   width: 3px;
   z-index: -10;
@@ -62,3 +68,4 @@ code {
   -webkit-tap-highlight-color: transparent; /* For iOS */
   /* tap-highlight-color: transparent; For other browsers */
 }
+
