@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { HotCoffee, Snacks, ColdCoffee, Dessert } from "./components/Data";
 import Header from "./components/Header";
-import New from "./components/Preview";
+import Preview from "./components/Preview";
 
 function Billing() {
   const [selected, setSelected] = useState([]);
@@ -94,9 +94,19 @@ function Billing() {
       Total: jsonTotal,
     };
 
-    setJsonData(newJsonData);
-    setAllJsonData((prevData) => [...prevData, newJsonData]);
+    const isDifferent =
+      !allJsonData.length ||
+      !isEqual(allJsonData[allJsonData.length - 1], newJsonData);
+
+    if (isDifferent) {
+      setJsonData(newJsonData);
+      setAllJsonData((prevData) => [...prevData, newJsonData]);
+    }
   };
+
+  function isEqual(obj1, obj2) {
+    return JSON.stringify(obj1) === JSON.stringify(obj2);
+  }
 
   //--------------------------------------------------------------------------------------------------
 
@@ -274,7 +284,7 @@ function Billing() {
         className="w-fit m-auto modalScrollbar bg-yellow-100 overflow-auto h-5/6 top-1/2 md:top-1/2 md:left-1/2 left-10 transform md:-translate-x-1/2 -translate-x-5 -translate-y-1/2 rounded border absolute p-3"
         ariaHideApp={false}
       >
-        <New jsonData={jsonData} />
+        <Preview jsonData={jsonData} />
       </Modal>
     </>
   );

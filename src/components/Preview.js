@@ -5,7 +5,6 @@ const Preview = ({jsonData}) => {
   const currentDate = new Date();
   const formattedDate = currentDate.toLocaleDateString()
   const formattedTime = currentDate.toLocaleTimeString()
-  console.log(jsonData.Items)
   return (
     
     <div className='h-fit w-full max-w-md py-10 font-sans bg-yellow-100'>
