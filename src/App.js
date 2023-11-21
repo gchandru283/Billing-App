@@ -70,6 +70,7 @@ function Billing() {
     setSelected([]);
     setTotalCost(0);
   };
+
   //-------------------------------------------------------------------------------------------------
 
   const [jsonData, setJsonData] = useState(null);
@@ -160,7 +161,7 @@ function Billing() {
       <Header />
       <div className="md:flex-row flex flex-col h-screen pt-16 select-none tap-highlight-transparent">
         <div className="md:w-1/3 md:max-w-sm overflow-y-auto flex-none shadow-slate-800 shadow-md pt-10 pb-10 flex flex-col items-center text-lg md:text-xl font-glacial">
-          <div className="">
+          <div>
             {renderSection("Hot Coffee", HotCoffee)}
             {renderSection("Cold Coffee", ColdCoffee)}
             {renderSection("Snacks", Snacks)}
@@ -226,7 +227,6 @@ function Billing() {
                       <td className=" pl-3 p-0.5 ">{item.name}</td>
                       <td className="text-center p-0.5">
                         <input
-                          onFocus={null}
                           className="w-16 text-center focus:outline-none bg-transparent"
                           type="number"
                           id={item.id}
@@ -262,8 +262,10 @@ function Billing() {
                 className="bg-gray-600 hover:scale-100 scale-95 md:scale-100 md:hover:scale-105 transform duration-300 cursor-pointer text-white p-1 px-3 text-lg rounded font-NewsCycle tracking-wide"
                 value="Print Receipt"
                 onClick={() => {
+                 if (totalCost>0){
                   convertToJSON();
                   openModal();
+                 } 
                 }}
               />
               <input
