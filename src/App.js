@@ -229,6 +229,7 @@ function Billing() {
                         <input
                           className="w-16 text-center focus:outline-none bg-transparent"
                           type="number"
+                          min="1"
                           id={item.id}
                           value={item.count}
                           onChange={(e) => handleCountChange(e, item.id)}
